@@ -1,0 +1,90 @@
+.tema01.bg {
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  z-index: -1;
+  bottom: 0;
+}
+.tema01.bg > div {
+  max-height: 70vh;
+  bottom: 0;
+  background-repeat: repeat-x;
+}
+body{
+  background-color: #19281f;
+}
+.tema01.bg .bg {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  max-height: unset;
+  background-color: #19281f;
+  background-size: contain;
+  animation: moveBg2 60s infinite linear;
+  background-position: bottom;
+  background-image: url(../imgs/theme01/bg.png);
+}
+.tema01.bg .far-buildings {
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: bottom;
+  animation: moveBg3 40s infinite linear;
+  background-image: url(../imgs/theme01/far-buildings.png);
+}
+.tema01.bg .buildings {
+  z-index: 2;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: bottom;
+  background-image: url(../imgs/theme01/buildings.png);
+}
+.tema01.bg .skill-foreground {
+  z-index: 3;
+  animation: moveBg 60s infinite linear;
+  width: 100%;
+  height: 100%;
+  max-height: 50%;
+  position: absolute;
+  bottom: 0;
+  background-size: contain;
+  background-position: bottom;
+  background-image: url(../imgs/theme01/skill-foreground.png);
+}
+@keyframes moveBg {
+  from {
+    background-position-x: -500px;
+  }
+  to {
+    background-position-x: 500px;
+  }
+}
+@keyframes moveBg2 {
+  from {
+    background-position-x: -500px;
+  }
+  to {
+    background-position-x: 500px;
+  }
+}
+@keyframes moveBg3 {
+  from {
+    background-position-x: 150px;
+  }
+  to {
+    background-position-x: 500px;
+  }
+}
+@keyframes moveBg4 {
+  from {
+    background-position-x: 400px;
+  }
+  to {
+    background-position-x: -200px;
+  }
+}
