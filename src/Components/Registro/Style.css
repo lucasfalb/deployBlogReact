@@ -9,45 +9,48 @@
   flex-direction: column;
   gap: 24px;
 }
-.registro-main > h2{
+.registro-main > h2 {
   font-size: 28px;
   line-height: 32px;
   padding-bottom: 5px;
   border-bottom: 2px solid #ffffff3d;
 }
-.registro-main > form{
- display: flex;
- flex-direction: column;
+.registro-main > form {
+  display: flex;
+  flex-direction: column;
 }
-.registro-main > form > label{
+.registro-main > form > label {
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   max-width: 200px;
 }
-.registro-main > form > button{
+.registro-main > form > button {
   background-color: #fff;
-  color:#303030;
+  color: #303030;
   padding: 20px;
   border-radius: 15px;
   font-size: 20px;
   font-weight: bold;
   transition: color 1s;
 }
-.registro-main > form > button:hover{
+.registro-main > form > button:hover {
   background-color: #303030;
-  color:#fff;
+  color: #fff;
   padding: 20px;
   border-radius: 15px;
   font-size: 20px;
   font-weight: bold;
 }
-.registro-main > form > label.checkBox{
+.registro-main > form > label.checkBox {
   display: flex;
   flex-direction: row;
   gap: 5px;
+  width: 100%;
+  max-width: 100%;
+  white-space: nowrap;
 }
-.registro-main > form > label.checkBox a{
+.registro-main > form > label.checkBox a {
   color: inherit;
 }
