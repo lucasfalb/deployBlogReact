@@ -1,0 +1,45 @@
+.login-main {
+  width: 100%;
+  height: 100%;
+  background: #f0f0f014;
+  padding: 20px;
+  border: 2px solid #ffffff3d;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.login-main > h2{
+  font-size: 28px;
+  line-height: 32px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #ffffff3d;
+}
+.login-main > form{
+ display: flex;
+ flex-direction: column;
+}
+.login-main > form > label{
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 200px;
+}
+.login-main > form > button{
+  background-color: #fff;
+  color:#303030;
+  padding: 20px;
+  border-radius: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  transition: color 1s;
+}
+.login-main > form > button:hover{
+  background-color: #303030;
+  color:#fff;
+  padding: 20px;
+  border-radius: 15px;
+  font-size: 20px;
+  font-weight: bold;
+}

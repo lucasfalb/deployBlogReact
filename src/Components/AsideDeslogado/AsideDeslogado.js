@@ -12,7 +12,7 @@ export default function AsideDeslogado({
         blogParallax, aqui você encontra posts diversos, com conteúdo
         colaborativo.
       </p>
-      <label>
+      <label className="label-AsideDeslogado">
         Já tem uma conta?
         <ButtonClick
           toggleDoingLogin={toggleDoingLogin}
@@ -20,7 +20,7 @@ export default function AsideDeslogado({
           onClick={toggleDoingLogin}
         />
       </label>
-      <label>
+      <label className="label-AsideDeslogado">
         Não? Registre-se
         <ButtonClick
           toggleDoingRegister={toggleDoingRegister}

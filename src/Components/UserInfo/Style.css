@@ -1,18 +1,18 @@
-label{
+.label-AsideDeslogado{
   display: flex;
   flex-direction: column;
   align-items: start;
   gap: 5px;
   margin-top: 10px;
 }
-label > button{
+.label-AsideDeslogado > button{
   color: #fff;
   border: 1px solid #fff;
   border-radius: 20px;
   padding: 5px 10px;
   transition: color 0.2s ease-in;
 }
-label > button:hover{
+.label-AsideDeslogado > button:hover{
   background-color: #fff;
   color: #303030;
 }
