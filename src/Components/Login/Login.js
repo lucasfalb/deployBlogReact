@@ -1,46 +1,53 @@
 import "./Style.css";
-import { useState } from "react";
-import React from "react";
+import { React, useState } from "react";
 import Input from "../Input/Input";
 
 export default function Login() {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleEmailInput = (e) => {
+    setEmail(e.target.value);
+  }
+
+  const handlePasswordInput = (e) => {
+    setPassword(e.target.value);
+  }
+
   function checkInputs() {
     const errorSpan = document.querySelector(".errorSpan");
     errorSpan.style.display = "flex";
-    if (formData.email === "") {
+    if (email === "") {
       errorSpan.innerHTML = "Ops, algo está inválido: <b>E-mail vazio!</b>";
-    } else if (formData.password === "") {
+    } else if (password === "") {
       errorSpan.innerHTML = "Ops, algo está inválido: <b>Senha vazia!</b>";
     } else {
       errorSpan.style.display = "none";
     }
   }
-  function handleSetData(e, key) {
-    e.preventDefault();
-    setFormData({ ...formData, [key]: e.target.value });
-  }
 
   async function handleForm(event) {
     event.preventDefault();
-    console.log(formData);
     checkInputs();
+
     let headers = {
-      Accept: "application/json",
-      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+      'Access-Control-Allow-Origin': '*',
+      "Content-Type": "application/json;charset=UTF-8",
     };
-    fetch(`https://blog-api-mongodb.vercel.app/authenticate`, {
+    
+    let response = await fetch("https://blog-api-mongodb.vercel.app/authenticate", {
       method: "POST",
-      headers,
-      body: formData,
+      headers: headers,
+      body: JSON.stringify({
+        "email": email,
+        "password": password,
+      }),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Debug:", data);
-      });
+
+    let json = await response.json();
+
+    console.log(json);
   }
   return (
     <>
@@ -53,8 +60,7 @@ export default function Login() {
             <Input
               type="email"
               name="email"
-              value={formData.email}
-              onChange={(e) => handleSetData(e, "email")}
+              onChange={handleEmailInput}
               placeholder="lucas@falb.com"
             />
           </label>
@@ -63,8 +69,7 @@ export default function Login() {
             <Input
               type="password"
               name="password"
-              value={formData.password}
-              onChange={(e) => handleSetData(e, "password")}
+              onChange={handlePasswordInput}
               placeholder="*************"
             />
           </label>
