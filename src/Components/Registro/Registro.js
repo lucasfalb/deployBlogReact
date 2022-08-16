@@ -32,8 +32,7 @@ export default function Registro({ doingLogin }) {
     } else if (formData.password === "") {
       errorSpan.innerHTML = "Ops, algo está inválido: <b>Senha vazia!</b>";
     } else if (!validatePassword(formData.password)) {
-      errorSpan.innerHTML =
-        `Ops, algo está inválido:
+      errorSpan.innerHTML = `Ops, algo está inválido:
         <b>Senha precisa conter no mínimo 8 digitos</b>
         <b>Senha precisa conter uma letra maiúscula</b>
         <b>Senha precisa conter um caracter especial</b>
@@ -57,15 +56,19 @@ export default function Registro({ doingLogin }) {
     event.preventDefault();
     console.log(formData);
     checkInputs();
-    let headers = {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'}
+    let headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
     fetch(`https://blog-api-mongodb.vercel.app/createUser`, {
-    method: "POST",
-    headers,
-    body: formData,
-    }).then((response) => response.json())
-    .then((data) => {
-      console.log('Success:', data);
+      method: "POST",
+      headers,
+      body: formData,
     })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Debug:", data);
+      });
   }
   return (
     <>

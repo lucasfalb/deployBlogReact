@@ -29,8 +29,8 @@ export default function Login() {
     console.log(formData);
     checkInputs();
     let headers = {
-      Accept: "application/json",
-      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
     };
     fetch(`https://blog-api-mongodb.vercel.app/authenticate`, {
       method: "POST",
@@ -39,7 +39,7 @@ export default function Login() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
+        console.log("Debug:", data);
       });
   }
   return (
