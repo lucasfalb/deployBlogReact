@@ -29,6 +29,7 @@ export default function Login() {
     console.log(formData);
     checkInputs();
     let headers = {
+      'Access-Control-Allow-Origin': '*',
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     };
