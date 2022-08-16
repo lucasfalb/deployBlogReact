@@ -54,3 +54,19 @@
 .registro-main > form > label.checkBox a {
   color: inherit;
 }
+.registro-main .errorSpan{
+  background-color: #BE2540;
+  color: #fff;
+  margin: 0 auto 20px;
+  padding: 5px 10px;
+  border-radius: 15px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  font-weight: 200;
+}
+.registro-main .errorSpan b{
+  font-weight: bold;
+  margin-left: 5px;
+}

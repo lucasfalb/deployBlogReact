@@ -26,6 +26,9 @@
 *::-webkit-scrollbar {
   display: none;
 }
+*{
+  cursor: url(../imgs/Cross-Hair.png), auto;
+}
 @font-face {
   font-family: "04B_03";
   src: url("./assets/fonts/04B_03__.TTF") format("opentype");

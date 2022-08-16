@@ -6,8 +6,8 @@ export default function Feed({ doingLogin, doingRegister, isLogged }) {
   return (
     <>
       <div className="content glass">
-        {doingLogin ? <Login /> : <> </>}
-        {doingRegister ? <Registro /> : <> </>}
+        {doingLogin ? <Login doingRegister={doingRegister} /> : <> </>}
+        {doingRegister ? <Registro doingLogin={doingLogin} /> : <> </>}
         {!doingLogin && !doingRegister ? <FeedContent isLogged={isLogged}/> : <> </>}
       </div>
     </>
