@@ -4,35 +4,47 @@ import React from "react";
 import Input from "../Input/Input";
 import "../Input/Style.css";
 
-export default function Registro({doingLogin}) {
+export default function Registro({ doingLogin }) {
   const [formData, setFormData] = useState({
-    usuario: "",
+    name: "",
     email: "",
-    senha: "",
-    confirmaSenha: "",
-    "avatar": "teste",
-    "active": true
+    password: "",
+    passwordConfirm: "",
+    avatar: "https://blogparallax.vercel.app/avatar-default.jpg",
+    active: true,
   });
   function checkInputs() {
+    const validatePassword = (password) => {
+      const passwordRegex =
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+      return passwordRegex.test(password);
+    };
     const errorSpan = document.querySelector(".errorSpan");
     let validatorUsername = /^[a-zA-Z-0-9]+$/;
     errorSpan.style.display = "flex";
-    if (formData.usuario === "") {
+    if (formData.name === "") {
       errorSpan.innerHTML = "Ops, algo está inválido: <b>Usuário vazio!</b>";
-    } else if (!formData.usuario.match(validatorUsername)) {
+    } else if (!formData.name.match(validatorUsername)) {
       errorSpan.innerHTML =
         "Ops, algo está inválido: <b>Usuário contém caracter inválido!</b>";
     } else if (formData.email === "") {
       errorSpan.innerHTML = "Ops, algo está inválido: <b>E-mail vazio!</b>";
-    } else if (formData.senha === "") {
+    } else if (formData.password === "") {
       errorSpan.innerHTML = "Ops, algo está inválido: <b>Senha vazia!</b>";
-    } else if (formData.confirmaSenha === "") {
+    } else if (!validatePassword(formData.password)) {
+      errorSpan.innerHTML =
+        `Ops, algo está inválido:
+        <b>Senha precisa conter no mínimo 8 digitos</b>
+        <b>Senha precisa conter uma letra maiúscula</b>
+        <b>Senha precisa conter um caracter especial</b>
+        <b>Senha precisa conter um número</b>`;
+    } else if (formData.passwordConfirm === "") {
       errorSpan.innerHTML =
         "Ops, algo está inválido: <b>Confirme sua senha!</b>";
-    } else if (formData.senha !== formData.confirmaSenha) {
+    } else if (formData.password !== formData.passwordConfirm) {
       errorSpan.innerHTML =
         "Ops, algo está inválido: <b>As senhas não são iguais!</b>";
-    }else{
+    } else {
       errorSpan.style.display = "none";
     }
   }
@@ -45,18 +57,15 @@ export default function Registro({doingLogin}) {
     event.preventDefault();
     console.log(formData);
     checkInputs();
-    // fetch(`https://blog-api-mongodb.vercel.app/createUser`, {
-    // method: "POST",
-    // headers:{
-    //   'Accept': 'application/json',
-    //   'Content-Type': 'application/json'
-    // },
-    // body: formData,
-    // }).then((response) => response.json())
-    // .then((data) => {
-    //   console.log('Success:', data);
-    // })
-    
+    let headers = {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'}
+    fetch(`https://blog-api-mongodb.vercel.app/createUser`, {
+    method: "POST",
+    headers,
+    body: formData,
+    }).then((response) => response.json())
+    .then((data) => {
+      console.log('Success:', data);
+    })
   }
   return (
     <>
@@ -68,9 +77,9 @@ export default function Registro({doingLogin}) {
             Usuário
             <Input
               type="text"
-              name="usuario"
-              value={formData.usuario}
-              onChange={(e) => handleSetData(e, "usuario")}
+              name="name"
+              value={formData.name}
+              onChange={(e) => handleSetData(e, "name")}
               placeholder="lucasfalb"
               className="inputForm glass"
             />
@@ -90,9 +99,9 @@ export default function Registro({doingLogin}) {
             Senha
             <Input
               type="password"
-              name="senha"
-              value={formData.senha}
-              onChange={(e) => handleSetData(e, "senha")}
+              name="password"
+              value={formData.password}
+              onChange={(e) => handleSetData(e, "password")}
               placeholder="************"
               className="inputForm glass"
             />
@@ -101,9 +110,9 @@ export default function Registro({doingLogin}) {
             Confirmar senha
             <Input
               type="password"
-              name="confirmaSenha"
-              value={formData.confirmaSenha}
-              onChange={(e) => handleSetData(e, "confirmaSenha")}
+              name="passwordConfirm"
+              value={formData.passwordConfirm}
+              onChange={(e) => handleSetData(e, "passwordConfirm")}
               placeholder="************"
               className="inputForm glass"
             />
