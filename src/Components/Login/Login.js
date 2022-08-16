@@ -29,8 +29,8 @@ export default function Login() {
     console.log(formData);
     checkInputs();
     let headers = {
-      "Access-Control-Allow-Origin": "*",
-      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
     };
     fetch(`https://blog-api-mongodb.vercel.app/authenticate`, {
       method: "POST",
