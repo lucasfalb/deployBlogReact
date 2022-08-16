@@ -4,12 +4,14 @@ import React from "react";
 import Input from "../Input/Input";
 import "../Input/Style.css";
 
-export default function Registro(doingLogin) {
+export default function Registro({doingLogin}) {
   const [formData, setFormData] = useState({
     usuario: "",
     email: "",
     senha: "",
     confirmaSenha: "",
+    "avatar": "teste",
+    "active": true
   });
   function checkInputs() {
     const errorSpan = document.querySelector(".errorSpan");
@@ -43,17 +45,17 @@ export default function Registro(doingLogin) {
     event.preventDefault();
     console.log(formData);
     checkInputs();
-    fetch(`https://blog-api-mongodb.vercel.app/createUser`, {
-    method: "POST",
-    headers:{
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: formData,
-    }).then((response) => response.json())
-    .then((data) => {
-      console.log('Success:', data);
-    })
+    // fetch(`https://blog-api-mongodb.vercel.app/createUser`, {
+    // method: "POST",
+    // headers:{
+    //   'Accept': 'application/json',
+    //   'Content-Type': 'application/json'
+    // },
+    // body: formData,
+    // }).then((response) => response.json())
+    // .then((data) => {
+    //   console.log('Success:', data);
+    // })
     
   }
   return (
