@@ -57,13 +57,18 @@ export default function Registro({ doingLogin }) {
     console.log(formData);
     checkInputs();
     let headers = {
+			//"application/x-www-form-urlencoded;charset=UTF-8"
       Accept: "application/json",
-      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+      "Content-Type": "application/json;charset=UTF-8",
     };
+
+		var object = {};
+		formData.forEach(function(value, key){object[key] = value;});
+		var json = JSON.stringify(object);
     fetch(`https://blog-api-mongodb.vercel.app/createUser`, {
       method: "POST",
       headers,
-      body: formData,
+      body: json,
     })
       .then((response) => response.json())
       .then((data) => {
