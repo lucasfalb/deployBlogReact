@@ -4,7 +4,7 @@ import React from "react";
 import Input from "../Input/Input";
 import "../Input/Style.css";
 
-export default function Registro({isLogged, setDoingRegister, setLogged}) {
+export default function Registro({setDoingRegister, setLogged}) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",

@@ -5,17 +5,21 @@ function Aside({
   toggleDoingLogin,
   toggleDoingRegister,
   toggleLogged,
-  userData
+  userData,
+  toggleEditingUser,
+  toggleDoingNewPost
 }) {
   return (
     <>
       <aside className="glass">
         <UserInfo
+          toggleDoingNewPost={toggleDoingNewPost}
           userData={userData}
           isLogged={isLogged}
           toggleDoingLogin={toggleDoingLogin}
           toggleDoingRegister={toggleDoingRegister}
           toggleLogged={toggleLogged}
+          toggleEditingUser={toggleEditingUser}
         />
       </aside>
     </>

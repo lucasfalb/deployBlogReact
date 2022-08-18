@@ -41,10 +41,14 @@ function Main() {
       setLogged(false);
     }
   }
-  useEffect(() => {checkLogged()})
+  window.onload = () =>{
+    checkLogged()
+  }
+
   function toggleLogged() {
     setLogged(!isLogged);
   }
+
   const [doingLogin, setDoingLogin] = useState(false);
   function toggleDoingLogin() {
     setDoingLogin(!doingLogin);
@@ -55,6 +59,16 @@ function Main() {
     setDoingRegister(!doingRegister);
     setDoingLogin(false);
   }
+  const [editingUser, setEditingUser] = useState(false);
+  function toggleEditingUser(){
+    setEditingUser(!editingUser)
+    setDoingNewPost(false)
+  }
+  const [doingNewPost, setDoingNewPost] = useState(false);
+  function toggleDoingNewPost() {
+    setDoingNewPost(!doingNewPost);
+    setEditingUser(false)
+  }
   return (
     <>
       <main className="main">
@@ -64,15 +78,20 @@ function Main() {
           doingRegister={doingRegister}
           setDoingRegister={setDoingRegister}
           setLogged={setLogged}
+          userData={userData}
           setDoingLogin={setDoingLogin}
+          editingUser={editingUser}
+          doingNewPost={doingNewPost}
         />
         <Aside
           isLogged={isLogged}
           userData={userData}
+          toggleDoingNewPost={toggleDoingNewPost}
           toggleDoingLogin={toggleDoingLogin}
           toggleDoingRegister={toggleDoingRegister}
           toggleLogged={toggleLogged}
-        />
+          toggleEditingUser={toggleEditingUser}
+       />
       </main>
     </>
   );

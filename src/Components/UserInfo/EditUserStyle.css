@@ -1,0 +1,72 @@
+.editar-user-main {
+  width: 100%;
+  height: 100%;
+  background: #f0f0f014;
+  padding: 20px;
+  border: 2px solid #ffffff3d;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.editar-user-main > h2 {
+  font-size: 28px;
+  line-height: 32px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #ffffff3d;
+}
+.editar-user-main > form {
+  display: flex;
+  flex-direction: column;
+}
+.editar-user-main > form > label {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 200px;
+}
+.editar-user-main > form > button {
+  background-color: #fff;
+  color: #303030;
+  padding: 20px;
+  border-radius: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  transition: color 1s;
+}
+.editar-user-main > form > button:hover {
+  background-color: #303030;
+  color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.editar-user-main > form > label.checkBox {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  width: 100%;
+  max-width: 100%;
+  white-space: nowrap;
+}
+.editar-user-main > form > label.checkBox a {
+  color: inherit;
+}
+.editar-user-main .errorSpan{
+  background-color: #BE2540;
+  color: #fff;
+  margin: 0 auto 20px;
+  padding: 5px 10px;
+  border-radius: 15px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  font-weight: 200;
+}
+.editar-user-main .errorSpan b{
+  font-weight: bold;
+  margin-left: 5px;
+}
