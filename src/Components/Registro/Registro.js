@@ -119,7 +119,7 @@ export default function Registro({isLogged, setDoingRegister, setLogged}) {
         <h3>Preencha os campos abaixo para se cadastrar:</h3>
         <form onSubmit={handleForm}>
           <label>
-            Usuário
+            Como você deseja ser chamad@?
             <Input
               type="text"
               name="name"
