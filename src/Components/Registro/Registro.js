@@ -4,7 +4,7 @@ import React from "react";
 import Input from "../Input/Input";
 import "../Input/Style.css";
 
-export default function Registro({setDoingRegister, setLogged}) {
+export default function Registro({isLogged, setDoingRegister, setLogged}) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,9 +20,13 @@ export default function Registro({setDoingRegister, setLogged}) {
       return passwordRegex.test(password);
     };
     const errorSpan = document.querySelector(".errorSpan");
+    let validatorUsername = /^[a-zA-Z-0-9]+$/;
     errorSpan.style.display = "flex";
     if (formData.name === "") {
       errorSpan.innerHTML = "Ops, algo está inválido: <b>Usuário vazio!</b>";
+    } else if (!formData.name.match(validatorUsername)) {
+      errorSpan.innerHTML =
+        "Ops, algo está inválido: <b>Usuário contém caracter inválido!</b>";
     } else if (formData.email === "") {
       errorSpan.innerHTML = "Ops, algo está inválido: <b>E-mail vazio!</b>";
     } else if (formData.password === "") {
@@ -62,7 +66,6 @@ export default function Registro({setDoingRegister, setLogged}) {
     checkInputs();
     let headers = {
       Accept: "application/json",
-      "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json;charset=UTF-8",
     };
     fetch(`https://blog-api-mongodb.vercel.app/createUser`, {
