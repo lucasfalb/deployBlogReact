@@ -61,7 +61,7 @@ export default function Registro({setDoingRegister, setLogged}) {
     console.info(`Dados do cadastro:`, formData);
     checkInputs();
     let headers = {
-      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json;charset=UTF-8",
     };
     fetch(`https://blog-api-mongodb.vercel.app/createUser`, {
