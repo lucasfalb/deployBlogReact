@@ -2,18 +2,27 @@ import "./Style.css";
 import { React, useState } from "react";
 import Input from "../Input/Input";
 
-export default function Login() {
+function setCookie(name,value,days) {
+  var expires = "";
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime() + (days*24*60*60*1000));
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
 
+export default function Login({isLogged, setDoingLogin, setLogged}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleEmailInput = (e) => {
     setEmail(e.target.value);
-  }
+  };
 
   const handlePasswordInput = (e) => {
     setPassword(e.target.value);
-  }
+  };
 
   function checkInputs() {
     const errorSpan = document.querySelector(".errorSpan");
@@ -32,24 +41,38 @@ export default function Login() {
     checkInputs();
 
     let headers = {
-      'Access-Control-Allow-Origin': '*',
+      "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json;charset=UTF-8",
     };
-    
-    let response = await fetch("https://blog-api-mongodb.vercel.app/authenticate", {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify({
-        "email": email,
-        "password": password,
-      }),
-    })
+
+    let response = await fetch(
+      "https://blog-api-mongodb.vercel.app/authenticate",
+      {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      }
+    );
 
     let json = await response.json();
-    let token = json.token;
-    let userId = json.userId;
 
-    console.log(json);
+    if (json.token) {
+      let token = json.token;
+      let userId = json.userId;
+      setCookie('token', token, 5);
+      setCookie('userId', userId, 5);
+
+      setDoingLogin(false)
+      setLogged(true);
+      console.log(json);
+    }
+    else {
+      alert(JSON.stringify(json));
+    }
+    
   }
   return (
     <>

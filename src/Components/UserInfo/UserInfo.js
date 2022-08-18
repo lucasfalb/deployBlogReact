@@ -5,14 +5,16 @@ export default function UserInfo({
   toggleLogged,
   toggleDoingLogin,
   toggleDoingRegister,
+  userData,
 }) {
+
   return (
     <>
       {isLogged ? (
         <>
-          <img src="assets/imgs/avatar.jpg" alt="avatar" />
-          <h1>@username</h1>
-          <p>about-me.</p>
+          <img id="avatar" src={userData.avatar} alt="avatar" />
+          <h1>@{userData.name}</h1>
+          <p>{userData.biography}</p>
         </>
       ) : (
         <>

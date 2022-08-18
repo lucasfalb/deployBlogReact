@@ -4,7 +4,7 @@ import React from "react";
 import Input from "../Input/Input";
 import "../Input/Style.css";
 
-export default function Registro({ doingLogin }) {
+export default function Registro({isLogged, setDoingRegister, setLogged}) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -51,15 +51,22 @@ export default function Registro({ doingLogin }) {
     e.preventDefault();
     setFormData({ ...formData, [key]: e.target.value });
   }
-
+  function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+      var date = new Date();
+      date.setTime(date.getTime() + (days*24*60*60*1000));
+      expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+  }
   async function handleForm(event) {
     event.preventDefault();
-    console.log(formData);
-    console.log(JSON.stringify(formData));
+    console.info(`Dados do cadastro:`, formData);
     checkInputs();
     let headers = {
       Accept: "application/json",
-      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+      "Content-Type": "application/json;charset=UTF-8",
     };
     fetch(`https://blog-api-mongodb.vercel.app/createUser`, {
       method: "POST",
@@ -69,6 +76,40 @@ export default function Registro({ doingLogin }) {
       .then((response) => response.json())
       .then((data) => {
         console.log("Debug:", data);
+        if (!data.errorId) {
+          async function doAutoLogin() {
+            let headersLogin = {
+              "Access-Control-Allow-Origin": "*",
+              "Content-Type": "application/json;charset=UTF-8",
+            };
+            let autoLogin = await fetch(
+              "https://blog-api-mongodb.vercel.app/authenticate",
+              {
+                method: "POST",
+                headers: headersLogin,
+                body: JSON.stringify({
+                  email: formData.email,
+                  password: formData.password,
+                }),
+              }
+            );
+            let loginInfo = await autoLogin.json();
+            if (loginInfo.token) {
+              let token = loginInfo.token;
+              let userId = loginInfo.userId;
+              setCookie('token', token, 5);
+              setCookie('userId', userId, 5);
+        
+              setDoingRegister(false)
+              setLogged(true);
+              console.log(loginInfo);
+            }
+            else {
+              alert(JSON.stringify(loginInfo));
+            }
+          }
+          doAutoLogin();
+        }
       });
   }
   return (
@@ -132,4 +173,3 @@ export default function Registro({ doingLogin }) {
     </>
   );
 }
- 
