@@ -55,6 +55,7 @@ export default function Registro({ doingLogin }) {
   async function handleForm(event) {
     event.preventDefault();
     console.log(formData);
+    console.log(JSON.stringify(formData));
     checkInputs();
     let headers = {
       Accept: "application/json",
@@ -63,7 +64,7 @@ export default function Registro({ doingLogin }) {
     fetch(`https://blog-api-mongodb.vercel.app/createUser`, {
       method: "POST",
       headers,
-      body: formData,
+      body: JSON.stringify(formData),
     })
       .then((response) => response.json())
       .then((data) => {

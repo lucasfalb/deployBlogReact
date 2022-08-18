@@ -46,6 +46,8 @@ export default function Login() {
     })
 
     let json = await response.json();
+    let token = json.token;
+    let userId = json.userId;
 
     console.log(json);
   }
