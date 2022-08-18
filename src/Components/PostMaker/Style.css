@@ -56,6 +56,7 @@
 }
 .registro-main .errorSpan{
   background-color: #BE2540;
+  flex-direction: column;
   color: #fff;
   margin: 0 auto 20px;
   padding: 5px 10px;
